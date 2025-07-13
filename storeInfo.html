@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Store Info Setup</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <style>
+        :root {
+            --primary-blue: #007bff;
+            --dark-blue: #0056b3;
+            --green: #28a745;
+            --red: #dc3545;
+            --gray-text: #6c757d;
+            --dark-gray-text: #343a40;
+            --light-gray-bg: #f8f9fa;
+            --white: #ffffff;
+            --border-color: #dee2e6;
+            --box-shadow: rgba(0, 0, 0, 0.1);
+        }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: var(--light-gray-bg);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            color: var(--dark-gray-text);
+        }
+
+        .container {
+            background-color: var(--white);
+            border-radius: 8px;
+            box-shadow: 0 4px 12px var(--box-shadow);
+            padding: 40px;
+            width: 90%;
+            max-width: 700px;
+            box-sizing: border-box;
+        }
+
+        h1 {
+            font-size: 2em;
+            margin-bottom: 20px;
+            text-align: center;
+            color: var(--primary-blue);
+            font-weight: 700;
+        }
+
+        .description {
+            font-size: 1em;
+            color: var(--gray-text);
+            line-height: 1.6;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        .form-group {
+            margin-bottom: 25px;
+        }
+
+        .form-group label {
+            display: block;
+            font-weight: 500;
+            color: var(--dark-gray-text);
+            margin-bottom: 8px;
+        }
+
+        .input-wrapper {
+            position: relative;
+            display: flex;
+            align-items: center;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid var(--border-color);
+            border-radius: 5px;
+            font-size: 1em;
+            color: var(--dark-gray-text);
+            box-sizing: border-box;
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: var(--primary-blue);
+            box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+        }
+
+        textarea.form-control {
+            min-height: 100px;
+            resize: vertical;
+        }
+
+        .input-icon {
+            position: absolute;
+            right: 15px;
+            color: var(--green);
+            font-size: 1.2em;
+            display: none; /* Hidden by default */
+        }
+
+        .help-text {
+            font-size: 0.85em;
+            color: var(--gray-text);
+            margin-top: 5px;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .help-text.error {
+            color: var(--red);
+        }
+
+        .button-group {
+            display: flex;
+            justify-content: flex-end;
+            margin-top: 30px;
+        }
+
+        .btn {
+            padding: 12px 30px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1.1em;
+            font-weight: 500;
+            transition: background-color 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .btn-primary {
+            background-color: var(--primary-blue);
+            color: var(--white);
+        }
+
+        .btn-primary:hover:not(:disabled) {
+            background-color: var(--dark-blue);
+            box-shadow: 0 2px 8px rgba(0, 123, 255, 0.3);
+        }
+
+        .btn-primary:disabled {
+            background-color: #cccccc;
+            cursor: not-allowed;
+        }
+
+        .message-box {
+            display: none; /* Hidden by default */
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: var(--white);
+            padding: 25px;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            z-index: 1000;
+            text-align: center;
+            min-width: 300px;
+        }
+
+        .message-box p {
+            margin-bottom: 20px;
+            font-size: 1.1em;
+            color: var(--dark-gray-text);
+        }
+
+        .message-box button {
+            background-color: var(--primary-blue);
+            color: var(--white);
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1em;
+            transition: background-color 0.3s ease;
+        }
+
+        .message-box button:hover {
+            background-color: var(--dark-blue);
+        }
+
+        .overlay {
+            display: none; /* Hidden by default */
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 999;
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .container {
+                padding: 25px;
+                width: 95%;
+            }
+
+            h1 {
+                font-size: 1.7em;
+            }
+
+            .btn {
+                padding: 10px 20px;
+                font-size: 1em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Store Information</h1>
+        <p class="description">
+            Please provide the essential details for your store. This information will be used to set up your online presence.
+        </p>
+
+        <div class="form-group">
+            <label for="storeName">Store Name <span style="color: var(--red);">*</span></label>
+            <div class="input-wrapper">
+                <input type="text" id="storeName" class="form-control" placeholder="e.g., My Awesome Store">
+                <i class="fas fa-check input-icon" id="storeNameCheck"></i>
+            </div>
+            <div class="help-text">
+                <span id="storeNameError" class="error"></span>
+                <span id="storeNameCharCount">0/50</span>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="storeDescription">Store Description</label>
+            <textarea id="storeDescription" class="form-control" placeholder="Tell us a little about your store..."></textarea>
+            <div class="help-text">
+                <span>Optional, but recommended.</span>
+                <span id="storeDescriptionCharCount">0/200</span>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="storeUrl">Store URL <span style="color: var(--red);">*</span></label>
+            <div class="input-wrapper">
+                <input type="url" id="storeUrl" class="form-control" placeholder="e.g., https://www.mystore.com">
+                <i class="fas fa-check input-icon" id="storeUrlCheck"></i>
+            </div>
+            <div class="help-text">
+                <span id="storeUrlError" class="error"></span>
+                <span>This will be your main online address.</span>
+            </div>
+        </div>
+        
+
+        <div class="button-group">
+            <a href="index.html" class="btn-primary">Home Page</a>
+        </div>
+
+        <div class="button-group">
+           <button type="button" class="btn btn-primary" id="nextStepBtn" disabled>Next Step</button>
+        </div>
+    </div>
+
+    <!-- Custom Message Box -->
+    <div class="overlay" id="overlay"></div>
+    <div class="message-box" id="messageBox">
+        <p id="messageText"></p>
+        <button id="messageBoxOkBtn">OK</button>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const storeNameInput = document.getElementById('storeName');
+            const storeNameCheck = document.getElementById('storeNameCheck');
+            const storeNameCharCount = document.getElementById('storeNameCharCount');
+            const storeNameError = document.getElementById('storeNameError');
+
+            const storeDescriptionTextarea = document.getElementById('storeDescription');
+            const storeDescriptionCharCount = document.getElementById('storeDescriptionCharCount');
+
+            const storeUrlInput = document.getElementById('storeUrl');
+            const storeUrlCheck = document.getElementById('storeUrlCheck');
+            const storeUrlError = document.getElementById('storeUrlError');
+
+            const nextStepBtn = document.getElementById('nextStepBtn');
+
+            const messageBox = document.getElementById('messageBox');
+            const messageText = document.getElementById('messageText');
+            const messageBoxOkBtn = document.getElementById('messageBoxOkBtn');
+            const overlay = document.getElementById('overlay');
+
+            const MAX_STORE_NAME_LENGTH = 50;
+            const MAX_STORE_DESCRIPTION_LENGTH = 200;
+
+            /**
+             * Displays a custom message box instead of alert().
+             * @param {string} message The message to display.
+             */
+            function showMessageBox(message) {
+                messageText.textContent = message;
+                messageBox.style.display = 'block';
+                overlay.style.display = 'block';
+            }
+
+            /**
+             * Hides the custom message box.
+             */
+            function hideMessageBox() {
+                messageBox.style.display = 'none';
+                overlay.style.display = 'none';
+            }
+
+            // Event listener for the OK button in the message box
+            messageBoxOkBtn.addEventListener('click', hideMessageBox);
+            overlay.addEventListener('click', hideMessageBox); // Hide if overlay is clicked
+
+            /**
+             * Validates all form fields and enables/disables the next step button.
+             */
+            function validateForm() {
+                const isStoreNameValid = validateStoreName();
+                const isStoreUrlValid = validateStoreUrl();
+
+                // Enable button only if all required fields are valid
+                nextStepBtn.disabled = !(isStoreNameValid && isStoreUrlValid);
+            }
+
+            /**
+             * Validates the store name input field.
+             * Shows/hides checkmark and error messages.
+             * @returns {boolean} True if the store name is valid, false otherwise.
+             */
+            function validateStoreName() {
+                const name = storeNameInput.value.trim();
+                storeNameCharCount.textContent = `${name.length}/${MAX_STORE_NAME_LENGTH}`;
+
+                if (name.length === 0) {
+                    storeNameError.textContent = 'Store name is required.';
+                    storeNameCheck.style.display = 'none';
+                    storeNameCharCount.classList.remove('error');
+                    return false;
+                } else if (name.length > MAX_STORE_NAME_LENGTH) {
+                    storeNameError.textContent = `Store name cannot exceed ${MAX_STORE_NAME_LENGTH} characters.`;
+                    storeNameCheck.style.display = 'none';
+                    storeNameCharCount.classList.add('error');
+                    return false;
+                } else {
+                    storeNameError.textContent = '';
+                    storeNameCheck.style.display = 'block';
+                    storeNameCharCount.classList.remove('error');
+                    return true;
+                }
+            }
+
+            /**
+             * Validates the store description textarea.
+             * Updates character count.
+             */
+            function validateStoreDescription() {
+                const description = storeDescriptionTextarea.value.trim();
+                storeDescriptionCharCount.textContent = `${description.length}/${MAX_STORE_DESCRIPTION_LENGTH}`;
+                if (description.length > MAX_STORE_DESCRIPTION_LENGTH) {
+                    storeDescriptionCharCount.classList.add('error');
+                } else {
+                    storeDescriptionCharCount.classList.remove('error');
+                }
+            }
+
+            /**
+             * Validates the store URL input field.
+             * Shows/hides checkmark and error messages.
+             * @returns {boolean} True if the store URL is valid, false otherwise.
+             */
+            function validateStoreUrl() {
+                const url = storeUrlInput.value.trim();
+                const urlPattern = new RegExp('^(https?:\\/\\/)?'+ // protocol
+                    '((([a-z\\d]([a-z\\d-]*[a-z\\d])*)\\.)+[a-z]{2,}|'+ // domain name
+                    '((\\d{1,3}\\.){3}\\d{1,3}))'+ // OR ip (v4) address
+                    '(\\:\\d+)?(\\/[-a-z\\d%_.~+]*)*'+ // port and path
+                    '(\\?[;&a-z\\d%_.~+=-]*)?'+ // query string
+                    '(\\#[-a-z\\d_]*)?$','i'); // fragment locator
+
+                if (url.length === 0) {
+                    storeUrlError.textContent = 'Store URL is required.';
+                    storeUrlCheck.style.display = 'none';
+                    return false;
+                } else if (!urlPattern.test(url)) {
+                    storeUrlError.textContent = 'Please enter a valid URL.';
+                    storeUrlCheck.style.display = 'none';
+                    return false;
+                } else {
+                    storeUrlError.textContent = '';
+                    storeUrlCheck.style.display = 'block';
+                    return true;
+                }
+            }
+
+            // Event listeners for input fields
+            storeNameInput.addEventListener('input', () => {
+                validateStoreName();
+                validateForm();
+            });
+            storeDescriptionTextarea.addEventListener('input', validateStoreDescription);
+            storeUrlInput.addEventListener('input', () => {
+                validateStoreUrl();
+                validateForm();
+            });
+
+            // Event listener for the Next Step button
+            nextStepBtn.addEventListener('click', () => {
+                if (nextStepBtn.disabled) {
+                    showMessageBox('Please fill in all required fields correctly before proceeding.');
+                    return;
+                }
+                // In a real application, you would navigate to the next step or submit the form
+                const storeName = storeNameInput.value.trim();
+                const storeDescription = storeDescriptionTextarea.value.trim();
+                const storeUrl = storeUrlInput.value.trim();
+
+                showMessageBox(`Store Info Submitted!\nName: ${storeName}\nDescription: ${storeDescription || 'N/A'}\nURL: ${storeUrl}`);
+                console.log('Store Information:', {
+                    name: storeName,
+                    description: storeDescription,
+                    url: storeUrl
+                });
+            });
+
+            // Initial validation call to set button state on page load
+            validateForm();
+        });
+    </script>
+</body>
+</html>

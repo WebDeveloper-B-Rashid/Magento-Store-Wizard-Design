@@ -3,9 +3,85 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title> Magento-Store-Wizard-Design </title>
+    <title>Corefinity Magento Wizard</title>
+   
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+     <!-- Font Awesome -->
+    <link href="css/fonts.css" rel="stylesheet">
+     <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
-    <h1>Magento-Store-Wizard-Design</h1>
+
+    <!-- <div class="page-context">
+        <h1>Length/Structure</h1>
+        <p>The application will be a single HTML page that should not be scrollable unless its a larger form (for example the plugins page) with accompanying CSS and JavaScript files. The structure will be a multi-step form, progressing through various configuration sections (steps/tabs) and concluding with a summary.</p>
+    </div> -->
+
+    <div class="wizard-container">
+        <header class="wizard-header">
+            <div class="wizard-title">Corefinity Magento Wizard</div>
+            <div class="wizard-progress">
+                <span>Step 4 of 5</span>
+                <div class="progress-bar-wrapper">
+                    <div class="progress-bar-fill" style="width: 80%;"></div>
+                </div>
+            </div>
+        </header>
+
+        <div class="wizard-content">
+            <nav class="wizard-sidebar">
+                <ul>
+                    <li class="step-item-1 completed">
+                        <i class="fas fa-store"></i>
+                        <a href="storeInfo.html"><span class="step-text">Store info</span></a>
+                    </li>
+                    <li class="step-item-2 completed">
+                        <i class="fas fa-cog"></i>
+                        <span class="step-text">System</span>
+                    </li>
+                    <li class="step-item-3 active">
+                        <i class="fas fa-paint-brush"></i>
+                        <span class="step-text">Styles</span>
+                    </li>
+                    <li class="step-item-4">
+                        <i class="fas fa-cogs"></i> <span class="step-text">Plugin Settings</span>
+                    </li>
+                    <li class="step-item-5">
+                        <i class="fas fa-file-alt"></i>
+                        <span class="step-text">Summary</span>
+                    </li>
+                </ul>
+            </nav>
+
+            <main class="wizard-main">
+                <h2>Lets Build Your Fresh Magento Website</h2>
+                <p class="step-description">Corefinity Magento Wizard is a no-code solution for building and deploying a fully functional Magento store. Simply input some basic information throughout the guided steps to configure your store, including our approved third-parties ensuring your site is tailored to you and your Magento Store.</p>
+
+                <div class="form-group">
+                    <label for="storeName">Store Name</label>
+                    <div class="input-with-icon">
+                        <input type="text" id="storeName" name="storeName" value="Sample Store">
+                        <i class="fas fa-chevron-down dropdown-icon"></i>
+                    </div>
+                    <small>Store name available</small>
+                </div>
+
+                <div class="info-box warning">
+                    <div class="info-icon"><i class="fas fa-lightbulb"></i></div>
+                    <div class="info-content">
+                        <h4>Licensing</h4>
+                        <p>Depending on your modules and theme, you may need to add your license keys to demo and/or download your development-ready packages.</p>
+                    </div>
+                </div>
+
+                <div class="wizard-footer">
+                    <!-- <a href="storeInfo.html"><span class="step-text">Store info</span></a> -->
+                    <button class="next-step-button"><a href="storeInfo.html"><span class="step-text">Store info</span></a></button> 
+                    <!-- <button class="next-step-button">Next Step</button> -->
+                </div>
+            </main>
+        </div>
+    </div>
+
 </body>
 </html>
