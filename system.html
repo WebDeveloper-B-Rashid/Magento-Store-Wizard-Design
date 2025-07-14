@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>System Dashboard</title>
+    <link rel="stylesheet" href="css/system.css">
+</head>
+<body>
+    <div class="container">
+        <h1>System Overview</h1>
+
+        <div class="card">
+            <h2>CPU Usage</h2>
+            <p id="cpu-usage">Loading...</p>
+            <div class="progress-bar-container">
+                <div id="cpu-progress" class="progress-bar"></div>
+            </div>
+        </div>
+
+        <div class="card">
+            <h2>Memory Usage</h2>
+            <p id="memory-usage">Loading...</p>
+            <div class="progress-bar-container">
+                <div id="memory-progress" class="progress-bar"></div>
+            </div>
+        </div>
+
+        <div class="card">
+            <h2>Disk Space</h2>
+            <p id="disk-space">Loading...</p>
+            <div class="progress-bar-container">
+                <div id="disk-progress" class="progress-bar"></div>
+            </div>
+        </div>
+
+        <div class="card action-card">
+            <h2>System Actions</h2>
+            <button id="restart-button">Restart Service</button>
+            <p id="action-message"></p>
+        </div>
+
+        <div class="card action-card">
+            <h2>Go To Magento Wizard</h2>
+            <!-- <a href="index.html" class="btn-primary">Home Page</a> -->
+            <a href="index.html" class="btn-primary"><button id="restart-button">Magento Wizard</button></a>
+            <!-- <button id="restart-button">Home Page</button> -->
+            <p id="action-message"></p>
+        </div>
+       
+
+    </div>
+
+    <script src="/js/system.js"></script>
+</body>
+</html>

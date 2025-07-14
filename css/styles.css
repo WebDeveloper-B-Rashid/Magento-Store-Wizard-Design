@@ -1,5 +1,6 @@
 /* styles.css */
 
+
 :root {
     --primary-blue: #007bff; /* Example blue, adjust to match image */
     --light-blue: #e0f2ff;
@@ -13,6 +14,8 @@
     --warning-border: #ffeeba;
     --text-color: #4a4a4a; /* More neutral text color */
 }
+
+
 
 body {
     font-family: Arial, sans-serif;
@@ -131,6 +134,7 @@ body {
     background: #3afa67;
     cursor: pointer;
     font-size: 0.95em;
+    /* color: #3722f0; */
     position: relative;
     border-left: 3px solid transparent;
 }
@@ -183,7 +187,7 @@ body {
 
 .step-item i {
     margin-right: 10px;
-    font-size: 1.1em;
+    font-size: 1.1em;   
 }
 
 /* Status styles for sidebar */
